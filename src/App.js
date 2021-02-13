@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { Router } from "@reach/router";
+import NavLink from "./NavLink";
+import Posts from "./Posts";
+import { makeServer } from "./server";
+let Dash = () => <div>Dash</div>;
+
+if (process.env.NODE_ENV === "development") {
+  makeServer({ environment: "development" });
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="max-w-7xl mx-auto bg-white">
+      <h1 className="text-5xl text-center py-5 border-b">Fancy blog</h1>
+
+      <div className="flex min-h-full">
+        <div className="w-40">
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="dashboard">Dashboard</NavLink>
+        </div>
+        <Router>
+          <Posts path="/" />
+          <Dash path="dashboard" />
+        </Router>
+      </div>
     </div>
   );
 }
