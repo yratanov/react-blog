@@ -14,7 +14,7 @@ export default function Posts() {
   }, []);
 
   let postItems = posts.map((post) => (
-    <Post key={post.id.toString()} post={post} />
+    <Post className="mb-5" key={post.id.toString()} post={post} />
   ));
-  return <div>{postItems}</div>;
+  return <div className="p-5">{postItems}</div>;
 }
